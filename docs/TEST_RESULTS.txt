@@ -1,0 +1,63 @@
+实测记录 — 2026-10-20（Pacific/Auckland）
+
+产物
+dist\磁盘空间分析器.exe
+99,840 字节（97.5 KiB）
+SHA-256: 353AF1C1DE0A25060331CAD91E93005BD6C4650EFE584DDC29C2AF2663FE0736
+Windows GUI 子系统 / AnyCPU / 普通权限 / 图标与清单内嵌 / 无必需旁置文件。
+本机 Windows、系统 .NET Framework 4.8.1；编译器为系统 .NET Framework C# 编译器。
+
+扫描：9 项通过，1 项可选能力跳过
+- 中文、空格、分号路径；普通/空/多层目录及递归计数。
+- 5 GiB 稀疏文件：按逻辑长度精确计数，无需分配 5 GiB 实际空间。
+- 原始数值降序、同大小稳定排序。
+- 155 层 Unicode 长路径，迭代遍历。
+- 目录联接循环及根路径联接跳过。
+- 硬链接按名称分别统计。
+- 拒绝访问的根/子目录，缺失和无效路径。
+- 实际执行中取消：部分合计一致且标记取消。
+可选文件符号链接创建因系统未启用 Developer Mode/无相应权限而跳过；目录联接测试通过。
+
+原版对照：104 项断言通过
+实际运行 baseline\original.zip 内原版 PowerShell 函数，仅替换 UI 更新函数。
+两个确定性目录对照：直接文件分组、每个直接文件夹、整根总大小/文件数/目录数和多路径合计一致。
+原始源码归档及测试对象内容/时间戳未变。新版按文件逐项显示，原版把直接文件汇总显示。
+
+树图：13 项通过，737,290 次断言
+固定种子 741；28 组布局，含 1–1000 项的组合。
+验证面积比例、完整覆盖、无重叠、249 项+准确汇总、零值/极值和稳定排序。
+验证调色稳定性和白字对比度、鼠标/方向键/Home/End/Enter、事件不重复、无障碍选择通知。
+验证 96/144/192 DPI 绘图（100%/150%/200%）；这不等同于完整窗口在对应实体显示器上的实测。
+
+真实 EXE 界面检查
+本机 125% DPI：中文路径与按钮清晰；顶部标签、磁盘容量、表格列及行高不裁切。
+4,718,592 字节、3 文件、3 文件夹的中文/分号路径测试目录：排行与树图一致。
+统一蓝色比例条；磁盘数值来自系统查询，显示当前实际状态。
+排行展开/收起、数值升降序、双击进入、空目录、返回、重新扫描均正常。
+复制路径后实际读取剪贴板值核对一致；资源管理器定位到对应测试目录。
+CSV 实际保存与读回：UTF-8 BOM、中文列/路径、4 行、原始字节合计 4,718,592，比例合计约 100%。
+C:\Windows 扫描中界面持续响应，Esc 取消后保留上次 4.50 MB 完整结果。
+专门检查界面文案：无欢迎语、宣传语、标题副说明或无功能的小字；技术路径/数据保持完整。
+
+便携性：2 项通过（详细数据在对应 JSON）
+在另一个含中文和空格的位置复制单个 EXE，分别测试空闲启动、系统盘扫描启动后关闭。
+TEMP/TMP/APPDATA/LOCALAPPDATA 重定向到独立测试目录，监视文件创建、修改、删除与重命名。
+两次均正常退出，返回码 0，关闭后 3 秒内进程消失，未强制结束。
+未观察到文件写入/新建/残留文件、子进程或 TCP 连接，EXE 哈希不变，测试目录均移除。
+记录了既有应用目录本身的 Changed 元数据通知；没有关联文件变更。
+静态审查无应用注册表写入、配置存储、缓存、日志、运行库解压、网络客户端或后台服务。
+
+范围限制
+未进行全系统注册表/文件操作追踪；重定向环境变量不能拦截全部 Windows 已知文件夹 API。
+未修改目录 ACL 进行只读发行目录运行测试；没有在独立干净 Windows、ARM 或不同实体缩放屏实测。
+子进程/TCP 为采样检查，不能单靠采样证明所有时刻均无活动；另有源代码审查支持无联网实现。
+扫描期间变化的文件系统、网络断开等并非快照一致性测试；异常通过扫描详情呈现。
+Windows 系统自行管理的执行、安全、图标和回收站记录不属于应用缓存，也未尝试清除。
+
+复现
+powershell -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run-tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run-compatibility-tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run-treemap-tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run-portability-tests.ps1
+powershell -NoProfile -ExecutionPolicy Bypass -File .\tests\run-portability-tests.ps1 -ScanSystemDrive

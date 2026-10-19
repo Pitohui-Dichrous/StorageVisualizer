@@ -1,0 +1,16 @@
+{
+  "dateLocal": "2026-10-20",
+  "timezone": "Pacific/Auckland",
+  "executableBytes": 99840,
+  "executableSha256": "353AF1C1DE0A25060331CAD91E93005BD6C4650EFE584DDC29C2AF2663FE0736",
+  "sourceZipBytes": 87857,
+  "sourceZipSha256": "F3560EFE48C0B14B1690B9BC8775E2ED6CFDA9DEFCD6202B5F4D6992F3FE8178",
+  "sourceZipEntries": 30,
+  "sourceZipCrcPassed": true,
+  "originalBackupByteIdentical": true,
+  "extractedSourceBuildPassed": true,
+  "extractedSourceBuildBytes": 99840,
+  "portableTestsMatchDeliveredExe": true,
+  "distContainsOnlyExecutable": true,
+  "testScratchDirectoriesRemoved": true
+}

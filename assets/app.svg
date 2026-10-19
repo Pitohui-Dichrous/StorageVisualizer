@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="folder" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#2786F5"/><stop offset="1" stop-color="#1758C4"/>
+    </linearGradient>
+  </defs>
+  <path d="M24 66a18 18 0 0 1 18-18h55l22 24h95a18 18 0 0 1 18 18v104a18 18 0 0 1-18 18H42a18 18 0 0 1-18-18z" fill="#76BBFF"/>
+  <path d="M24 96a16 16 0 0 1 16-16h176a16 16 0 0 1 16 16v98a18 18 0 0 1-18 18H42a18 18 0 0 1-18-18z" fill="url(#folder)"/>
+  <rect x="62" y="144" width="28" height="44" rx="5" fill="#FFF"/>
+  <rect x="114" y="120" width="28" height="68" rx="5" fill="#FFF"/>
+  <rect x="166" y="96" width="28" height="92" rx="5" fill="#FFF"/>
+</svg>

@@ -1,0 +1,30 @@
+# Local binaries and packages; download the app from Releases.
+/dist/
+/publish/
+/*.zip
+
+# Keep the original baseline archive needed by compatibility tests.
+/baseline/original/
+
+# Temporary build and test files.
+/.qa/
+/tests/.scan-tests-*/
+/tests/.compatibility-tests-*/
+/tests/.portability-test-*/
+/tests/.delivery-build-*/
+*.pdb
+*.log
+*.tmp
+*.user
+*.suo
+.vs/
+bin/
+obj/
+
+# Credentials and local environment files.
+.env
+.env.*
+*.pem
+*.key
+*.pfx
+*.p12

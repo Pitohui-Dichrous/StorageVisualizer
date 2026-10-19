@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "auditMethod": "Read PE/CLR/native-resource structures and managed assembly metadata without running the entry point; source review for persistence and lifecycle.",
+  "identity": {
+    "executableName": "磁盘空间分析器.exe",
+    "assemblyName": "磁盘空间分析器",
+    "assemblyVersion": "1.0.0.0",
+    "fileVersion": "1.0.0.0"
+  },
+  "portableExecutable": {
+    "format": "PE32",
+    "machine": "I386",
+    "clrIlOnly": true,
+    "clr32BitRequired": false,
+    "clr32BitPreferred": false,
+    "executionArchitecture": "AnyCPU; native process architecture follows the installed .NET Framework and operating system",
+    "subsystem": 2,
+    "subsystemName": "Windows GUI",
+    "consoleEntryPoint": false,
+    "clrMetadataVersion": "v4.0.30319"
+  },
+  "frameworkDependencies": {
+    "managedAssemblyReferences": [
+      "mscorlib, Version=4.0.0.0",
+      "System, Version=4.0.0.0",
+      "System.Core, Version=4.0.0.0",
+      "System.Drawing, Version=4.0.0.0",
+      "System.Windows.Forms, Version=4.0.0.0"
+    ],
+    "thirdPartyManagedReferences": [],
+    "privateRuntimeRequired": false,
+    "runtimeExtraction": false,
+    "configurationSidecarRequired": false,
+    "applicationSidecarsRequired": [],
+    "minimumApiNote": "Control.DeviceDpi requires .NET Framework 4.7 or newer. The documented target is Windows 10/11 with .NET Framework 4.8. CLR assembly reference version 4.0 does not imply compatibility with every earlier Framework 4.x release."
+  },
+  "embeddedResources": {
+    "managed": ["DiskSpace.app.ico"],
+    "nativeResourceTypes": [3, 14, 16, 24],
+    "nativeResourceTypeNames": ["RT_ICON", "RT_GROUP_ICON", "RT_VERSION", "RT_MANIFEST"],
+    "iconDimensions": [16, 20, 24, 32, 40, 48, 64, 128, 256],
+    "iconBitDepth": 32,
+    "iconArtwork": "Original folder-and-bars artwork; no external icon packs"
+  },
+  "manifest": {
+    "executionLevel": "asInvoker",
+    "uiAccess": false,
+    "supportedOsWindows10And11": true,
+    "legacyDpiAware": "true/pm",
+    "dpiAwareness": "PerMonitorV2, PerMonitor",
+    "longPathAware": true
+  },
+  "persistenceSourceReview": {
+    "automaticApplicationFileWrites": false,
+    "applicationSettingsStore": false,
+    "applicationRegistryWrites": false,
+    "applicationNetworkClient": false,
+    "startupChildProcess": false,
+    "backgroundServiceOrScheduledTask": false,
+    "explicitFileWrite": "Only the user-requested CSV export; FileMode.CreateNew prevents overwriting an existing destination.",
+    "explicitExternalActions": ["Copy selected path to clipboard", "Open selected location in Windows Explorer"],
+    "runtimeTestScript": "tests/run-portability-tests.ps1",
+    "runtimeTestReports": ["docs/portability-test.json", "docs/portability-scan-close-test.json"]
+  },
+  "scopeAndLimits": [
+    "Size and SHA-256 are intentionally excluded here so the descriptive audit does not freeze a pre-final build identity; the runtime test records the executable it actually tests.",
+    "The runtime smoke test observes an isolated copied application directory plus redirected TEMP, TMP, APPDATA, and LOCALAPPDATA folders; it does not prove the absence of writes in every operating-system location.",
+    "No test or application code erases Windows-maintained execution history, security records, icon caches, or recycle-bin metadata. Deleting the EXE removes the application itself.",
+    "Long-path scanning uses native extended-length Win32 paths; shell actions and user-selected export destinations remain subject to their respective Windows API limits."
+  ]
+}

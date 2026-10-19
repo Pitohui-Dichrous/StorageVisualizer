@@ -1,0 +1,10 @@
+Disk Space Analyzer — original application artwork
+
+The folder-and-bars icon in app.svg and app.ico was created specifically for
+this application. It contains no third-party artwork, fonts, or icon packs.
+
+The application author grants permission to use, copy, modify, and distribute
+this artwork with this application or derivatives, for any purpose, without
+a separate license fee or attribution requirement.
+
+The artwork is provided without warranty of any kind.

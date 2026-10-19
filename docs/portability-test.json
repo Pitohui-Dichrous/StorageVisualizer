@@ -1,0 +1,57 @@
+{
+    "schemaVersion":  1,
+    "testedAtUtc":  "2026-10-19T13:50:24.9847082Z",
+    "executableName":  "磁盘空间分析器.exe",
+    "executableBytes":  99840,
+    "executableSha256":  "353AF1C1DE0A25060331CAD91E93005BD6C4650EFE584DDC29C2AF2663FE0736",
+    "startupArguments":  [
+
+                         ],
+    "closeDuringStartupScan":  false,
+    "scanWarmupMilliseconds":  0,
+    "unicodePathWithSpaces":  true,
+    "applicationDirectoryReadOnlyAcl":  false,
+    "redirectedEnvironment":  [
+                                  "TEMP",
+                                  "TMP",
+                                  "APPDATA",
+                                  "LOCALAPPDATA"
+                              ],
+    "inputIdleReached":  true,
+    "closeMainWindowAccepted":  true,
+    "exitWithinThreeSeconds":  true,
+    "exitCode":  0,
+    "forcedTermination":  false,
+    "fileSystemEvents":  [
+                             {
+                                 "event":  "Changed",
+                                 "relativePath":  "便携目录 Unicode space",
+                                 "classification":  "existingDirectoryMetadata"
+                             }
+                         ],
+    "unexpectedFileSystemEvents":  [
+
+                                   ],
+    "unexpectedFilesAfterClose":  [
+
+                                  ],
+    "originalExecutableUnchanged":  true,
+    "childProcessesObserved":  [
+
+                               ],
+    "tcpConnectionsObserved":  [
+
+                               ],
+    "tcpInspectionAvailable":  true,
+    "sandboxRemoved":  true,
+    "passed":  true,
+    "limitations":  [
+                        "This is a lifecycle smoke test; it does not validate complete filesystem scan totals or CSV export.",
+                        "No ACLs are changed. The isolated Unicode directory and redirected folders are observed for writes.",
+                        "Changed notifications for pre-existing directories are retained as metadata observations; file writes and object creation/deletion/renaming fail the test.",
+                        "Process and TCP inspection are samples and cannot rule out very short-lived activity between samples.",
+                        "Environment redirection does not intercept every Windows known-folder API or every system location.",
+                        "No registry instrumentation is performed. Source review supports the absence of application registry writes.",
+                        "Windows-managed execution, security, icon, and recycle-bin records are outside this application test."
+                    ]
+}
